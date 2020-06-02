@@ -2,6 +2,9 @@
 # X | O | O
 # O | O | X
 
+run = True
+
+
 class Player():
 
     def __init__(self, number, symbol, name):
@@ -85,32 +88,55 @@ class Board:
 
 
 if __name__ == "__main__":
-    print(" 1 | 2 | 3 ")
-    print(" 4 | 5 | 6 ")
-    print(" 7 | 8 | 9 ")
 
-    board = Board()
+    run = True
 
-    Player1 = Player(1, "X", "Hans")
-    Player2 = Player(2, "O", "Wurst")
+    while run:
+        print("Herzlich Wilkommen zu Tik Tak Toe!")
 
-    active_player = Player1
+        print(" 1 | 2 | 3 ")
+        print(" 4 | 5 | 6 ")
+        print(" 7 | 8 | 9 ")
 
-    while True:
-        board.make_moove(active_player)
+        print("Bitte geben sie den Namen des Spielers Nummer 1 ein")
+        name1 = input(">")
 
-        board.print_board()
+        print("Bitte geben sie den Namen des Spielers Nummer 2 ein")
+        name2 = input(">")
 
-        if board.check_win(active_player):
-            print(active_player.name + " hat das Spiel gewonnen!")
-            print("press enter to close the game")
-            input()
-            break
+        board = Board()
 
-        if board.board_is_full():
-            print("Es sind keine legalen Züge mehr möglich!")
-            print("press enter to leave")
-            input()
-            break
+        Player1 = Player(1, "X", name1)
+        Player2 = Player(2, "O", name2)
 
-        active_player = board.change_turn(active_player)
+        active_player = Player1
+
+        while True:
+            board.make_moove(active_player)
+
+            board.print_board()
+
+            if board.check_win(active_player):
+
+                print(active_player.name + " hat das Spiel gewonnen!")
+                print(
+                    "Wenn sie direkt noocheinmal spielen wollen geben sie 'JA' ein. Ansonsten wird das Spiel geschlossen.")
+                rerun = input(">")
+                if rerun == "Ja" or rerun == "ja" or rerun == "JA":
+                    run = True
+                else:
+                    run = False
+                break
+
+            if board.board_is_full():
+                print("Es sind keine legalen Züge mehr möglich!")
+                print(
+                    "Wenn sie direkt noocheinmal spielen wollen geben sie 'JA' ein. Ansonsten wird das Spiel geschlossen.")
+                rerun = input(">")
+                if rerun == "Ja" or rerun == "ja" or rerun == "JA":
+                    run = True
+                else:
+                    run = False
+                break
+
+            active_player = board.change_turn(active_player)
