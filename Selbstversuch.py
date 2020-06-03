@@ -2,6 +2,11 @@
 # X | O | O
 # O | O | X
 
+#    0  1  2  3
+#    4  5  6  7
+#    8  9 10 11
+#   12 13 14 15
+
 run = True
 
 
@@ -107,7 +112,39 @@ class Board:
                 6] == active_player.number:
                 return True
             return False
-        else:
+        elif self.field_size == 16:
+            if self.field[0] == active_player.number and self.field[1] == active_player.number and self.field[
+                2] == active_player.number and self.field[3] == active_player.number:
+                return True
+            elif self.field[4] == active_player.number and self.field[5] == active_player.number and self.field[
+                6] == active_player.number and self.field[7] == active_player.number:
+                return True
+            elif self.field[8] == active_player.number and self.field[9] == active_player.number and self.field[
+                10] == active_player.number and self.field[11] == active_player.number:
+                return True
+            elif self.field[12] == active_player.number and self.field[13] == active_player.number and self.field[
+                14] == active_player.number and self.field[15] == active_player.number:
+                return True
+
+            elif self.field[0] == active_player.number and self.field[4] == active_player.number and self.field[
+                8] == active_player.number and self.field[12] == active_player.number:
+                return True
+            elif self.field[1] == active_player.number and self.field[5] == active_player.number and self.field[
+                9] == active_player.number and self.field[13] == active_player.number:
+                return True
+            elif self.field[2] == active_player.number and self.field[6] == active_player.number and self.field[
+                10] == active_player.number and self.field[14] == active_player.number:
+                return True
+            elif self.field[3] == active_player.number and self.field[7] == active_player.number and self.field[
+                11] == active_player.number and self.field[15] == active_player.number:
+                return True
+
+            elif self.field[0] == active_player.number and self.field[5] == active_player.number and self.field[
+                10] == active_player.number and self.field[15] == active_player.number:
+                return True
+            elif self.field[3] == active_player.number and self.field[6] == active_player.number and self.field[
+                9] == active_player.number and self.field[12] == active_player.number:
+                return True
             return False
 
     def board_is_full(self):
