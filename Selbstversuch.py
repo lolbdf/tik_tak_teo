@@ -90,6 +90,16 @@ class Board:
                 8] == active_player.number:
                 return True
 
+            elif self.field[0] == active_player.number and self.field[3] == active_player.number and self.field[
+                6] == active_player.number:
+                return True
+            elif self.field[1] == active_player.number and self.field[4] == active_player.number and self.field[
+                7] == active_player.number:
+                return True
+            elif self.field[2] == active_player.number and self.field[5] == active_player.number and self.field[
+                8] == active_player.number:
+                return True
+
             elif self.field[0] == active_player.number and self.field[4] == active_player.number and self.field[
                 8] == active_player.number:
                 return True
