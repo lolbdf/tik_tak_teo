@@ -1,4 +1,4 @@
-# X | O | X
+# X | X | O
 # X | O | O
 # O | O | X
 
@@ -23,6 +23,18 @@ class Board:
     def __init__(self, field_size=9):
         self.field = [0] * field_size
         self.field_size = field_size
+
+    def scoreboard(active_player):
+        pass
+
+    def save():
+        pass
+    
+    def exit():
+        pass
+
+    def reload():
+        pass
 
     def convert(self, cell):
         if int(self.field[cell]) == 0:
@@ -239,7 +251,7 @@ if __name__ == "__main__":
 
                 print(active_player.name + " hat das Spiel gewonnen!")
                 print(
-                    "Wenn sie direkt noocheinmal spielen wollen geben sie 'JA' ein. Ansonsten wird das Spiel geschlossen.")
+                    "Wenn sie direkt noocheinmal spielen wollen geben sie 'JA' ein. Wenn sie enter drücken und sie haben kein JA eingegeben schließt sich das Programm.")
                 rerun = input(">")
                 if rerun == "Ja" or rerun == "ja" or rerun == "JA":
                     run = True
@@ -250,7 +262,7 @@ if __name__ == "__main__":
             if board.board_is_full():
                 print("Es sind keine legalen Züge mehr möglich!")
                 print(
-                    "Wenn sie direkt noocheinmal spielen wollen geben sie 'JA' ein. Ansonsten wird das Spiel geschlossen.")
+                    "Wenn sie direkt noocheinmal spielen wollen geben sie 'JA' ein. Wenn sie enter drücken und sie haben kein JA eingegeben schließt sich das Programm.")
                 rerun = input(">")
                 if rerun == "Ja" or rerun == "ja" or rerun == "JA":
                     run = True
@@ -259,3 +271,4 @@ if __name__ == "__main__":
                 break
 
             active_player = board.change_turn(active_player)
+
