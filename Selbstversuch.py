@@ -39,10 +39,17 @@ class Board:
             print(" " + str(self.convert(6)) + " | " + str(self.convert(7)) + " | " + str(self.convert(8)))
 
         elif int(self.field_size) == 16:
-            print(" " + str(self.convert(0)) + " | " + str(self.convert(1)) + " | " + str(self.convert(2)) + " | " + str(self.convert(3)))
-            print(" " + str(self.convert(4)) + " | " + str(self.convert(5)) + " | " + str(self.convert(6)) + " | " + str(self.convert(7)))
-            print(" " + str(self.convert(8)) + " | " + str(self.convert(9)) + " | " + str(self.convert(10)) + " | " + str(self.convert(11)))
-            print(" " + str(self.convert(12)) + " | " + str(self.convert(13)) + " | " + str(self.convert(14)) + " | " + str(self.convert(15)))
+            print(
+                " " + str(self.convert(0)) + " | " + str(self.convert(1)) + " | " + str(self.convert(2)) + " | " + str(
+                    self.convert(3)))
+            print(
+                " " + str(self.convert(4)) + " | " + str(self.convert(5)) + " | " + str(self.convert(6)) + " | " + str(
+                    self.convert(7)))
+            print(
+                " " + str(self.convert(8)) + " | " + str(self.convert(9)) + " | " + str(self.convert(10)) + " | " + str(
+                    self.convert(11)))
+            print(" " + str(self.convert(12)) + " | " + str(self.convert(13)) + " | " + str(
+                self.convert(14)) + " | " + str(self.convert(15)))
         else:
             pass
 
@@ -59,7 +66,8 @@ class Board:
                 break
             else:
                 print(
-                    "Dieser Zug war illegal. Bitte achtem sie darauf, das sie eine GANZZAHL von 1 - " + str(self.field_size) + " eingeben, die noch nicht belegt ist!")
+                    "Dieser Zug war illegal. Bitte achtem sie darauf, das sie eine GANZZAHL von 1 - " + str(
+                        self.field_size) + " eingeben, die noch nicht belegt ist!")
                 continue
 
     def is_valid_moove(self, cell):
@@ -74,7 +82,6 @@ class Board:
             return False
         except TypeError:
             return False
-
 
     def change_turn(self, active_player):
         if active_player == Player1:
