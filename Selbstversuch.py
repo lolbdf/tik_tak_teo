@@ -1,3 +1,5 @@
+import random
+
 # X | O | X
 # X | O | O
 # O | O | X
@@ -10,7 +12,14 @@
 run = True
 
 
+class AI:
+    ai = True
+    number = 2
+    symbol = "X"
+
+
 class Player:
+    ai = False
 
     def __init__(self, number, symbol, name):
         self.symbol = symbol
@@ -55,20 +64,28 @@ class Board:
 
     def make_moove(self, player):
 
-        while True:
-            print(player.name + " ist am Zug. Bitte gib eine Ganzzahl von 1 - " + str(self.field_size) + " ein")
+        if not player.ai:
+            while True:
+                print(player.name + " ist am Zug. Bitte gib eine Ganzzahl von 1 - " + str(self.field_size) + " ein")
 
-            cell = input(">")
+                cell = input(">")
 
-            if self.is_valid_moove(cell):
-                cell = int(cell) - 1
-                self.field[int(cell)] = player.number
-                break
-            else:
-                print(
-                    "Dieser Zug war illegal. Bitte achtem sie darauf, das sie eine GANZZAHL von 1 - " + str(
-                        self.field_size) + " eingeben, die noch nicht belegt ist!")
-                continue
+                if self.is_valid_moove(cell):
+                    cell = int(cell) - 1
+                    self.field[int(cell)] = player.number
+                    break
+                else:
+                    print(
+                        "Dieser Zug war illegal. Bitte achtem sie darauf, das sie eine GANZZAHL von 1 - " + str(
+                            self.field_size) + " eingeben, die noch nicht belegt ist!")
+                    continue
+        else:
+            while True:
+                cell = random.randint(0, self.field_size -1)
+                if self.field[cell] == 0:
+                    self.field[int(cell)] = player.number
+                    break
+
 
     def is_valid_moove(self, cell):
         try:
@@ -219,16 +236,35 @@ if __name__ == "__main__":
         print()
         print()
 
-        print("Bitte geben sie den Namen des Spielers Nummer 1 ein")
-        name1 = input(">")
+        while True:
+            print()
+            print()
+            print("möchten sie gegen die AI (1) oder einen anderen Spieler (2) spielen?")
+            opponent = input(">")
+            if opponent == "1" or opponent == "2":
+                break
+            print()
+            print()
+            print(
+                "Das ist eine Pflichteingabe! Bitte geben sie entweder die 1 für ein Spiel gegen die AI ein oder eine 2 wenn sie gegen einen anderen Menschen spielen möchten!")
 
-        print("Bitte geben sie den Namen des Spielers Nummer 2 ein")
-        name2 = input(">")
+        if int(opponent) == 1:
+            print("Bitte geben sie ihren Namen ein")
+            name1 = input(">")
+            Player1 = Player(1, "X", name1)
+
+            Player2 = AI()
+
+        else:
+            print("Bitte geben sie den Namen des Spielers Nummer 1 ein")
+            name1 = input(">")
+            Player1 = Player(1, "X", name1)
+
+            print("Bitte geben sie den Namen des Spielers Nummer 2 ein")
+            name2 = input(">")
+            Player2 = Player(2, "O", name2)
 
         board = Board(field_size)
-
-        Player1 = Player(1, "X", name1)
-        Player2 = Player(2, "O", name2)
 
         active_player = Player1
 
