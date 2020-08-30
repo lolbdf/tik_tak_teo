@@ -17,6 +17,13 @@ class AI:
     number = 2
     symbol = "X"
 
+    def make_moove(self):
+        while True:
+            cell = random.randint(0, board.field_size - 1)
+            if board.field[cell] == 0:
+                board.field[int(cell)] = self.number
+                break
+
 
 class Player:
     ai = False
@@ -25,6 +32,22 @@ class Player:
         self.symbol = symbol
         self.number = number
         self.name = name
+
+    def make_moove(self, player):
+        while True:
+            print(player.name + " ist am Zug. Bitte gib eine Ganzzahl von 1 - " + str(board.field_size) + " ein")
+
+            cell = input(">")
+
+            if board.is_valid_moove(cell):
+                cell = int(cell) - 1
+                board.field[int(cell)] = player.number
+                break
+            else:
+                print(
+                    "Dieser Zug war illegal. Bitte achten sie darauf, das sie eine GANZZAHL von 1 - " + str(
+                        board.field_size) + " eingeben, die noch nicht belegt ist!")
+                continue
 
 
 class Board:
@@ -59,33 +82,13 @@ class Board:
                     self.convert(11)))
             print(" " + str(self.convert(12)) + " | " + str(self.convert(13)) + " | " + str(
                 self.convert(14)) + " | " + str(self.convert(15)))
-        else:
-            pass
 
     def make_moove(self, player):
 
         if not player.ai:
-            while True:
-                print(player.name + " ist am Zug. Bitte gib eine Ganzzahl von 1 - " + str(self.field_size) + " ein")
-
-                cell = input(">")
-
-                if self.is_valid_moove(cell):
-                    cell = int(cell) - 1
-                    self.field[int(cell)] = player.number
-                    break
-                else:
-                    print(
-                        "Dieser Zug war illegal. Bitte achtem sie darauf, das sie eine GANZZAHL von 1 - " + str(
-                            self.field_size) + " eingeben, die noch nicht belegt ist!")
-                    continue
+            player.make_moove(player)
         else:
-            while True:
-                cell = random.randint(0, self.field_size -1)
-                if self.field[cell] == 0:
-                    self.field[int(cell)] = player.number
-                    break
-
+            player.make_moove()
 
     def is_valid_moove(self, cell):
         try:
